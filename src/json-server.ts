@@ -14,7 +14,6 @@ import {
 import { TextDocumentPositionParams, DocumentRangeFormattingParams, ExecuteCommandParams, CodeActionParams, FoldingRangeParams, DocumentColorParams, ColorPresentationParams, TextDocumentSyncKind } from 'vscode-languageserver-protocol';
 import { getLanguageService, LanguageService, JSONDocument } from "vscode-json-languageservice";
 import * as TextDocumentImpl from "vscode-languageserver-textdocument";
-import { setTimeout } from "timers/promises";
 
 export function start(reader: MessageReader, writer: MessageWriter): JsonServer {
     const connection = createConnection(reader, writer);
@@ -199,7 +198,7 @@ export class JsonServer {
         const uri = URI.parse(url);
         if (uri.scheme === 'file') {
             return new Promise<string>((resolve, reject) => {
-                fs.readFile(uri.fsPath,{encoding: 'utf8'}, (err, result) => {
+                fs.readFile(uri.fsPath, {encoding:"utf8"}, (err, result) => {
                     err ? reject('') : resolve(result.toString());
                 });
             });
@@ -209,6 +208,7 @@ export class JsonServer {
             return response.responseText;
         }
         catch (error) {
+            // @ts-ignore
             return Promise.reject(error.responseText || getErrorStatusDescription(error.status) || error.toString());
         }
     }
@@ -226,7 +226,6 @@ export class JsonServer {
         return this.jsonService.doComplete(document, params.position, jsonDocument);
     }
 
-    
     protected validate(document: TextDocumentImpl.TextDocument): void {
         this.cleanPendingValidation(document);
         // @ts-ignore

@@ -1,19 +1,26 @@
 {
 	"compilerOptions": {
-		"declaration": true,
-		"sourceMap": true,
-		"module": "commonjs",
-		"moduleResolution": "node",
-		"target": "es6",
-		"outDir": "./dist",
-		"lib": ["dom", "es6", "es2015.collection", "es2015.promise"],
-		"types": ["node"],
-		"baseUrl": "./node_modules",
-		"jsx": "preserve",
-		"rootDir": "./src",
-		"typeRoots": ["node_modules/@types"],
-		"skipLibCheck": true
+		"baseUrl": ".",
+	  "target": "es6",
+	  "module": "commonjs",
+	  "moduleResolution": "node",
+	  "sourceMap": true,
+	  "declarationMap": true,
+	  "inlineSources": false,
+	  "declaration": true,
+	  "stripInternal": true,
+	  "lib": [
+		"es2016",
+		"dom"
+	  ],
+	  "rootDir": "src",
+	  "outDir": "lib",
+	  "strict": true,
+	  "noImplicitReturns": true,
+	  "noUnusedLocals": true,
+	  "skipLibCheck": true
 	},
-	"include": ["./src"],
-	"exclude": ["./node_modules"]
-}
+	"include": [
+	  "src"
+	]
+  }

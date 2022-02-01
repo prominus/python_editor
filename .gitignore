@@ -1,5 +1,4 @@
-dist/*.js
-dist/*.ttf
+lib
 
 # Logs
 logs
