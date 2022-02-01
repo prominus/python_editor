@@ -1,0 +1,4 @@
+langservers:
+  ts:
+    - python-language-server
+    - pylsp
