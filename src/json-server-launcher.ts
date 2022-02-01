@@ -1,8 +1,7 @@
 /* --------------------------------------------------------------------------------------------
- * Copyright (c) 2018 TypeFox GmbH (http://www.typefox.io). All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
+ * Licensed under the MIT License.
  * ------------------------------------------------------------------------------------------ */
-// import * as path from 'path';
+
 import * as rpc from "@codingame/monaco-jsonrpc";
 import * as server from "@codingame/monaco-jsonrpc/lib/server";
 import * as lsp from "vscode-languageserver";

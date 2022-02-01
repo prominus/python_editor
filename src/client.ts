@@ -1,9 +1,8 @@
 /* --------------------------------------------------------------------------------------------
- * Copyright (c) 2018 TypeFox GmbH (http://www.typefox.io). All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
+ * Licensed under the MIT License.
  * ------------------------------------------------------------------------------------------ */
+
 import {listen} from '@codingame/monaco-jsonrpc';
-// import * as monaco from 'monaco-editor-core';
 import * as monaco from 'monaco-editor';
 import {
     MonacoLanguageClient, CloseAction, ErrorAction,
@@ -12,25 +11,18 @@ import {
 import normalizeUrl from 'normalize-url';
 const ReconnectingWebSocket = require('reconnecting-websocket');
 
-
-// register Monaco languages
-// monaco.languages.register({
-//     id: 'json',
-//     extensions: ['.json', '.bowerrc', '.jshintrc', '.jscsrc', '.eslintrc', '.babelrc'],
-//     aliases: ['JSON', 'json'],
-//     mimetypes: ['application/json'],
-// });
-
+// Register python language with monaco editor
 monaco.languages.register({
     id: 'python',
-    extensions: ['.py'],
+    extensions: ['.py', '.rpy', '.pyw', '.cpy', '.gyp', '.gypi'],
     aliases: ['Python', 'py'],
+    firstLine: '^#!/.*\\bpython[0-9.-]*\\b',
 });
 
-// create Monaco editor
-const value = ['print(\'Hello World!\')'].join('\n');
-// model: monaco.editor.createModel(value, 'json', monaco.Uri.parse('inmemory://model.json')),
-// NOTE! The create model has to stay as json model, otherwise the autofill/autocompletion will not work
+// Initial value in editor box
+const value = 'print(\'Hello World!\')';
+
+// Initialization of the editor in the html element
 monaco.editor.create(document.getElementById("container")!, {
     model: monaco.editor.createModel(value, 'python', monaco.Uri.parse('inmemory:/file.py')),
     glyphMargin: true,
@@ -39,11 +31,16 @@ monaco.editor.create(document.getElementById("container")!, {
     },
     minimap: {
         enabled: false
-    }
+    },
+    // False will turn line numbers off so ignore the error here
+    // @ts-ignore
+    lineNumbers: false,
 });
 
 
 // install Monaco language client services
+// Typescript will complain here that we're trying to pass monaco from monaco-editor when we should be passing monaco from monaco-editor-core.
+// Ignoring this error because the underlying javascript will accept this object as they have the same class signature
 // @ts-ignore
 MonacoServices.install(monaco);
 

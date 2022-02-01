@@ -1,4 +1,8 @@
+# Output folder
 lib
+
+# Debug folder
+.vscode
 
 # Logs
 logs
