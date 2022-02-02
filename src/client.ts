@@ -94,5 +94,6 @@ function createWebSocket(url: string): WebSocket {
         debug: false
     };
     const websocket = new ReconnectingWebSocket(url, [], socketOptions);
+    // @ts-ignore
     return websocket as WebSocket;
 }

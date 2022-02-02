@@ -3,35 +3,35 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 const path = require('path');
+const client = path.resolve(__dirname, "src");
 const lib = path.resolve(__dirname, "lib");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     
     entry: {
-        "main": path.resolve(lib, "main.js"),
+        "main": path.resolve(client, "main.ts"),
         "editor.worker": 'monaco-editor/esm/vs/editor/editor.worker.js'
     },
     output: {
+        globalObject: 'self',
         filename: '[name].bundle.js',
-        path: lib,
-        clean: true,
+        path: lib
     },
     module: {
+        
         rules: [{
+            test: /\.ts?$/,
+            use: 'ts-loader',
+            exclude: /node_modules/
+        },
+        {
             test: /\.css$/,
             use: ['style-loader', 'css-loader']
         },
         {
             test: /\.ttf$/,
             use: ['file-loader']
-        },
-        {
-            test: /\.js$/,
-            enforce: 'pre',
-            loader: 'source-map-loader',
-            // These modules seems to have broken sourcemaps, exclude them to prevent an error flood in the logs
-            exclude: [/vscode-jsonrpc/, /vscode-languageclient/, /vscode-languageserver-protocol/]
         }]
     },
     target: ['web', 'es5'],
@@ -39,9 +39,9 @@ module.exports = {
         alias: {
             'vscode': require.resolve('@codingame/monaco-languageclient/lib/vscode-compatibility')
         },
-        extensions: ['.js', '.json', '.ttf'],
+        extensions: ['.ts', '.js', '.json', '.ttf'],
     },
     plugins: [
-		new HtmlWebPackPlugin()
+		new HtmlWebpackPlugin()
 	]
 };

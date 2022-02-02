@@ -12,6 +12,7 @@
 		"reconnecting-websocket": "^4.4.0",
 		"request-light": "^0.5.7",
 		"source-map": "^0.7.3",
+		"ts-loader": "^9.2.6",
 		"vscode-json-languageservice": "^4.1.9",
 		"vscode-jsonrpc": "^6.0.0",
 		"vscode-languageserver": "7.0.0",
@@ -20,11 +21,11 @@
 		"ws": "^8.4.2"
 	},
 	"scripts": {
+		"clean": "rimraf lib",
 		"compile": "tsc",
-		"watch": "tsc -w",
 		"copy": "echo F | xcopy /y .\\src\\index.html .\\lib\\index.html",
-		"development": "npm run compile && webpack --progress --config webpack.dev.js",
-		"production": "npm run compile && webpack --progress --config webpack.prod.js",
+		"development": "npm run clean && tsc && webpack --progress --config webpack.dev.js",
+		"production": "npm run clean && tsc && webpack --progress --config webpack.prod.js",
 		"start": "node lib/server.js --external"
 	},
 	"devDependencies": {
@@ -35,16 +36,16 @@
 		"@types/vscode": "1.63.2",
 		"@types/ws": "8.2.2",
 		"css-loader": "^6.6.0",
+		"html-webpack-plugin": "^5.5.0",
 		"monaco-editor-core": "^0.31.1",
+		"monaco-editor-webpack-plugin": "^7.0.1",
 		"os-browserify": "^0.3.0",
 		"rimraf": "^3.0.2",
 		"source-map-loader": "^3.0.1",
 		"style-loader": "^3.3.1",
+		"terser-webpack-plugin": "^5.2.5",
 		"typescript": "^4.5.5",
 		"webpack-cli": "^4.9.2",
-		"webpack-merge": "^5.8.0",
-		"html-webpack-plugin": "^5.5.0",
-		"monaco-editor-webpack-plugin": "^7.0.1",
-		"terser-webpack-plugin": "^5.2.5"
+		"webpack-merge": "^5.8.0"
 	}
 }

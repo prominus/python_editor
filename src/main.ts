@@ -8,6 +8,6 @@ import './main.css';
     getWorkerUrl: () => './editor.worker.bundle.js'
 }
 
-require('./client');
+require('./client')
 require('./container');
 
