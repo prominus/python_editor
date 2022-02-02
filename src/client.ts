@@ -23,7 +23,7 @@ monaco.languages.register({
 const value = 'print(\'Hello World!\')';
 
 // Initialization of the editor in the html element
-monaco.editor.create(document.getElementById("container")!, {
+monaco.editor.create(document.body, {
     model: monaco.editor.createModel(value, 'python', monaco.Uri.parse('inmemory:/file.py')),
     glyphMargin: true,
     lightbulb: {

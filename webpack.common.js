@@ -4,17 +4,18 @@
  * ------------------------------------------------------------------------------------------ */
 const path = require('path');
 const lib = path.resolve(__dirname, "lib");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
-    devtool: 'source-map',
+    
     entry: {
         "main": path.resolve(lib, "main.js"),
         "editor.worker": 'monaco-editor/esm/vs/editor/editor.worker.js'
     },
     output: {
         filename: '[name].bundle.js',
-        path: lib
+        path: lib,
+        clean: true,
     },
     module: {
         rules: [{
@@ -33,11 +34,14 @@ module.exports = {
             exclude: [/vscode-jsonrpc/, /vscode-languageclient/, /vscode-languageserver-protocol/]
         }]
     },
-    target: 'web',
+    target: ['web', 'es5'],
     resolve: {
         alias: {
             'vscode': require.resolve('@codingame/monaco-languageclient/lib/vscode-compatibility')
         },
         extensions: ['.js', '.json', '.ttf'],
     },
+    plugins: [
+		new HtmlWebPackPlugin()
+	]
 };

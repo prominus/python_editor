@@ -1,26 +1,27 @@
 {
 	"compilerOptions": {
 		"baseUrl": ".",
-	  "target": "es6",
-	  "module": "commonjs",
-	  "moduleResolution": "node",
-	  "sourceMap": true,
-	  "declarationMap": true,
-	  "inlineSources": false,
-	  "declaration": true,
-	  "stripInternal": true,
-	  "lib": [
-		"es2016",
-		"dom"
-	  ],
-	  "rootDir": "src",
-	  "outDir": "lib",
-	  "strict": true,
-	  "noImplicitReturns": true,
-	  "noUnusedLocals": true,
-	  "skipLibCheck": true
+		"target": "es5",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"sourceMap": true,
+		"declarationMap": true,
+		"inlineSources": false,
+		"declaration": true,
+		"stripInternal": true,
+		"lib": [
+			"es6",
+			"dom"
+		],
+		"rootDir": "src",
+		"outDir": "lib",
+		"strict": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"skipLibCheck": true,
+		"removeComments": true
 	},
 	"include": [
-	  "src"
+		"src"
 	]
-  }
+}
