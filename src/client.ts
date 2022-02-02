@@ -9,7 +9,7 @@ import {
     MonacoServices, createConnection, MessageConnection
 } from '@codingame/monaco-languageclient';
 import normalizeUrl from 'normalize-url';
-const ReconnectingWebSocket = require('reconnecting-websocket');
+import ReconnectingWebSocket from 'reconnecting-websocket';
 
 // Register python language with monaco editor
 monaco.languages.register({
@@ -93,5 +93,6 @@ function createWebSocket(url: string): WebSocket {
         maxRetries: Infinity,
         debug: false
     };
-    return new ReconnectingWebSocket(url, [], socketOptions);
+    const websocket = new ReconnectingWebSocket(url, [], socketOptions);
+    return websocket as WebSocket;
 }
